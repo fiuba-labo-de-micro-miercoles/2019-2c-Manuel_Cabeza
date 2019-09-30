@@ -1,13 +1,14 @@
 ;Programar una rutina que levante una tabla ubicada en ROM (TABLA_ROM) y copie a
-;una tabla ubicada en SRAM (TABLA_RAM) solamente los ASCII de números
-;(ASCII(‘0’)=30h … ASCII(‘9’)=39h). La Tabla en ROM termina con 0xFF y no tiene
-;más de 1000 posiciones.
-
+;una tabla ubicada en SRAM (TABLA_RAM) solamente los ASCII de nÃºmeros
+;(ASCII(â€˜0â€™)=30h â€¦ ASCII(â€˜9â€™)=39h). La Tabla en ROM termina con 0xFF y no tiene
+;mÃ¡s de 1000 posiciones.
+
+
 .include "m328def.inc"
 
 .EQU FIN_TABLA = 0xFF
 .EQU MIN_ASCII = 0x30
-.EQU MAX_ASCII = 0x40
+.EQU MAX_ASCII = 0x40	; error! 0x39 + 1 = 0x3A
 
 .DSEG
 
@@ -16,8 +17,11 @@
 .CSEG
 	RJMP MAIN
 
+; estilo: las tablas van al final del cÃ³digo
 TABLA_ROM:
 		.DW	0x31,0x39,0x49,0xFF,0x21,0x35,0x30
+
+; falta .org INT_VECTORS_SIZE
 
 MAIN:
 	LDI ZH, HIGH(TABLA_ROM << 1)
