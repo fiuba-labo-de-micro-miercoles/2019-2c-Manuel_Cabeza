@@ -20,8 +20,11 @@ MAIN:
 
 PROMEDIO: 
 	LD R19, X+	
-	ADD R17, R19
-	CPI R19, 0
+; 1ero hay que determinar si R19 es negativo o no
+; luego se suma ajustando el byte alto.
+
+	ADD R17, R19	; esto en general modifica el carry (y hay que sumarlo el byte alto luego)
+	CPI R19, 0	; esto vuelve a modificr el carry (en general) con lo cual perdiste el estado del carry anterior
 	BRLT SUMA_NEG
 	CLR R20
 	ADC R18, R20
