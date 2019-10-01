@@ -8,7 +8,7 @@
 
 .EQU FIN_TABLA = 0xFF
 .EQU MIN_ASCII = 0x30
-.EQU MAX_ASCII = 0x40	; error! 0x39 + 1 = 0x3A
+.EQU MAX_ASCII = 0x3A
 
 .DSEG
 
@@ -17,11 +17,7 @@
 .CSEG
 	RJMP MAIN
 
-; estilo: las tablas van al final del código
-TABLA_ROM:
-		.DW	0x31,0x39,0x49,0xFF,0x21,0x35,0x30
-
-; falta .org INT_VECTORS_SIZE
+.ORG INT_VECTORS_SIZE
 
 MAIN:
 	LDI ZH, HIGH(TABLA_ROM << 1)
@@ -47,3 +43,5 @@ LOOP:
 
 VOLVER: RET
 
+TABLA_ROM:
+		.DW	0x31,0x39,0x49,0xFF,0x21,0x35,0x30
