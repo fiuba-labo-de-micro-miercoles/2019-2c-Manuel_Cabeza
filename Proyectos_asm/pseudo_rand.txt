@@ -1,0 +1,23 @@
+
+
+; Asumo que R1 es mayor a 0
+RAND_8:
+	; Pongo b7 en el bit 0 de R4, el resto 0. Ademas queda b0 de R0 en 0.
+	ROL R0
+	CLR R4
+	ROL R4
+	
+	; Pongo b6 en el bit 0 de R5, el resto 0
+	MOV R5, R0
+	ROL R5
+	CLR R5
+	ROL R5
+	
+	; Hago el XOR y luego pongo el bit con el resto de R0
+	EOR R5, R4
+	OR R0, R5
+	
+	DEC R1
+	BRNE RAND_8
+	MOV R2,R0
+RET
