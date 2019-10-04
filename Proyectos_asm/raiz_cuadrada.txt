@@ -1,0 +1,43 @@
+
+
+; Mediante x(k+1) = (x(k) + a/x(k))/2 con x(0) = a/2, programar la rutina SQRT que recibe un R0 sin signo y devuelve la raiz cuadrada con doble presicion. Itere 5 veces. Suponer que existe la rutina DIV() (Ej. R5|R4 = DIV(R5|R4, R3|R2))
+
+
+; En R17 esta X_i
+; En R0 la variable a calcular 'a'
+
+SQRT:
+	LDI R16, 5
+
+	; Inicializo X_0
+	MOV R17, R0
+	LSR R17
+	CLR R18
+	CALL ITERAR	
+RET
+
+ITERAR:
+	; Divido a por X_k
+	CLR R2
+	DIV (R2|R0 , R18|R17) 
+
+	; Le sumo a eso X_k
+	ADD R17, R0
+	ADC R18, R2
+
+	; Divido X_k por 2
+	LSR R18
+	ROR R17
+
+	DEC R16
+	BRNE ITERAR
+RET
+
+
+
+
+
+
+
+
+
