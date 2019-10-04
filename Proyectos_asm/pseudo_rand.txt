@@ -4,8 +4,8 @@ Generar la rutina RAND_8 que genere numeros de manera pseudo aleatoria, que reci
 RAND_8:
 	; Pongo b7 en el bit 0 de R4, el resto 0. Ademas queda b0 de R0 en 0.
 	ROL R0
-	CLR R4
-	ROL R4
+	CLR R3
+	ROL R3
 	
 	; Pongo b6 en el bit 0 de R5, el resto 0
 	MOV R5, R0
@@ -14,7 +14,7 @@ RAND_8:
 	ROL R5
 	
 	; Hago el XOR y luego pongo el bit con el resto de R0
-	EOR R5, R4
+	EOR R5, R3
 	OR R0, R5
 	
 	DEC R1
