@@ -1,4 +1,4 @@
-
+Generar la rutina RAND_8 que genere numeros de manera pseudo aleatoria, que recibe en R0 el valor inicial, en R1 el numero de iteraciones y pone el resultado en R2. La operacion se computa moviendo los bits de R0 a la izq, perdiendo b7 y haciendo que b0 sea la XOR de los viejos valores de b6-b7.
 
 ; Asumo que R1 es mayor a 0
 RAND_8:
